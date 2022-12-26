@@ -1,0 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+.search-form {
+  padding: 10px;
+  background-color: #3f57b3;
+  text-align: center;
+}
