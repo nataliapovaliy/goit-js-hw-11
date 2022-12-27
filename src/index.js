@@ -1,6 +1,7 @@
 import axios from "axios";
 import Notiflix from 'notiflix';
 import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { fetchSearch } from './js/fetchSearch';
 
 const searchForm = document.querySelector('#search-form');
@@ -21,17 +22,19 @@ function onSearch(event) {
             }
 
             const forCard = data.hits;
+            console.log(data);
             console.log(forCard);
+            Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
             for (const item of forCard) {
                 const htmlCars = `<div class="photo-card">
                                     <a href="${item.largeImageURL}">
-                                        <img src="${item.webformatURL}" alt="" loading="lazy" /></a>
+                                        <img src="${item.webformatURL}" alt="" loading="lazy" width="250px" heigth="250px"/></a>
                                     <div class="info">
-                                        <p class="info-item"><b>Likes</b>${item.likes}</p>
-                                        <p class="info-item"><b>Views</b>${item.views}</p>
-                                        <p class="info-item"><b>Comments</b>${item.comments}</p>
-                                        <p class="info-item"><b>Downloads</b>${item.downloads}</p>
+                                        <p class="info-item"><b>Likes</b><br>${item.likes}</p>
+                                        <p class="info-item"><b>Views</b><br>${item.views}</p>
+                                        <p class="info-item"><b>Comments</b><br>${item.comments}</p>
+                                        <p class="info-item"><b>Downloads</b><br>${item.downloads}</p>
                                     </div>
                                 </div> `
                 gallery.innerHTML += htmlCars;
@@ -41,6 +44,8 @@ function onSearch(event) {
             Notiflix.Notify.failure('Error. Please try again.');
         })
     
-    
+    // let lightbox = new SimpleLightbox('.gallery a');
+    // gallery.on('show.simplelightbox');
+
 }
 
